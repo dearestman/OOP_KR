@@ -4,10 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.new_oop.ClientController">
    <children>
       <AnchorPane layoutX="-10.0" layoutY="79.0" prefHeight="321.0" prefWidth="700.0" style="-fx-background-color: #fafafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="79.0">
@@ -19,21 +19,47 @@
             </Label>
             <TableView fx:id="tableViewsClients" layoutX="21.0" layoutY="85.0" prefHeight="428.0" prefWidth="758.0">
               <columns>
-                <TableColumn fx:id="firstNameColumn" prefWidth="231.0" text="Фамилия" >
-                   <cellValueFactory>
-                      <PropertyValueFactory property="firstName"/>
-                   </cellValueFactory>
-                </TableColumn>
-                <TableColumn fx:id="lastNameColumn" prefWidth="217.0" text="Имя" >
-                   <cellValueFactory>
-                      <PropertyValueFactory property="lastName"/>
-                   </cellValueFactory>
-                </TableColumn>
-                 <TableColumn fx:id="documentColumn" prefWidth="309.0" text="Отчество" >
+                 <TableColumn fx:id="idColumn" prefWidth="36.0" text="id">
                     <cellValueFactory>
-                       <PropertyValueFactory property="patronymic"/>
+                       <PropertyValueFactory property="id" />
                     </cellValueFactory>
                  </TableColumn>
+                <TableColumn fx:id="firstNameColumn" prefWidth="89.0" text="Фамилия">
+                   <cellValueFactory>
+                      <PropertyValueFactory property="firstName" />
+                   </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="lastNameColumn" prefWidth="82.0" text="Имя">
+                   <cellValueFactory>
+                      <PropertyValueFactory property="lastName" />
+                   </cellValueFactory>
+                </TableColumn>
+                 <TableColumn fx:id="patronymicColumn" prefWidth="82.0" text="Отчество">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="patronymic" />
+                    </cellValueFactory>
+                 </TableColumn>
+                 <TableColumn fx:id="birthdayColumn" prefWidth="124.0" text="Дата рождения">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="birthday" />
+                    </cellValueFactory>
+                 </TableColumn>
+                 <TableColumn fx:id="documentTypeColumn" prefWidth="121.0" text="Тип документа">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="documentType" />
+                    </cellValueFactory>
+                 </TableColumn>
+                 <TableColumn fx:id="serialColumn" prefWidth="103.0" text="Серия">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="serial" />
+                    </cellValueFactory>
+                 </TableColumn>
+                  <TableColumn fx:id="numberColumn" prefWidth="119.0" text="Номер">
+                      <cellValueFactory>
+                          <PropertyValueFactory property="number" />
+                      </cellValueFactory>
+                  </TableColumn>
+
               </columns>
             </TableView>
             <Button fx:id="addClientButton" layoutX="21.0" layoutY="51.0" mnemonicParsing="false" onAction="#addClientButtonOnAction" text="+">

@@ -13,10 +13,15 @@ public class TestUser {
     private SimpleStringProperty serial = new SimpleStringProperty();
     private SimpleStringProperty number = new SimpleStringProperty();
 
-    public TestUser(String firstName, String lastName, String patronymic) {
+    public TestUser(int id, String firstName, String lastName, String patronymic, String birthday, String documentType, String serial, String number) {
+        this.id = new SimpleIntegerProperty(id);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.patronymic = new SimpleStringProperty(patronymic);
+        this.birthday = new SimpleStringProperty(birthday);
+        this.documentType = new SimpleStringProperty(documentType);
+        this.serial = new SimpleStringProperty(serial);
+        this.number = new SimpleStringProperty(number);
     }
 
     public int getId() {

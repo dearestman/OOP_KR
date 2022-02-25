@@ -1,5 +1,6 @@
 package com.company.new_oop;
 
+import com.company.new_oop.domain.MyDate;
 import com.company.new_oop.domain.users.Adult;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,7 +16,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ClientController implements Initializable {
-
+    @FXML
+    public TableColumn <TestUser, String> birthdayColumn;
+    @FXML
+    public TableColumn <TestUser, String> documentTypeColumn;
+    @FXML
+    public TableColumn <TestUser, String> serialColumn;
+    @FXML
+    public TableColumn <TestUser, String> numberColumn;
     @FXML
     private Button addClientButton;
 
@@ -36,8 +44,14 @@ public class ClientController implements Initializable {
 
     @FXML
     void addClientButtonOnAction(ActionEvent event) {
-        TestUser testUser = new TestUser("dsa","dsada", "das");
-        tableViewsClients.getItems().add(testUser);
+
+        for (Adult adult: Adult.selectAllAdults()) {
+            tableViewsClients.getItems().add(new TestUser(adult.getUserID(),adult.getFirstName(),adult.getLastName(),
+                    adult.getPatronymic(), MyDate.covertLocalDateToString(adult.getBirthday()), "Паспорт",
+                    adult.getClientPassport().getPassportSerial(), adult.getClientPassport().getPassportNumber()));
+        }
+//        TestUser testUser = new TestUser("dsa","dsada", "das");
+//        tableViewsClients.getItems().add(testUser);
     }
 
     @FXML
@@ -51,7 +65,9 @@ public class ClientController implements Initializable {
         ArrayList<Adult> temp = Adult.selectAllAdults();
         for (Adult adult:temp
              ) {
-            list.add(new TestUser(adult.getFirstName(),adult.getLastName(),adult.getPatronymic()));
+            list.add(new TestUser(adult.getUserID(),adult.getFirstName(),adult.getLastName(),
+                    adult.getPatronymic(), MyDate.covertLocalDateToString(adult.getBirthday()), "Паспорт",
+                    adult.getClientPassport().getPassportSerial(), adult.getClientPassport().getPassportNumber()));
         }
 
 
