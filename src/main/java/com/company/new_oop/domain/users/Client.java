@@ -91,8 +91,40 @@ public class Client extends User implements UserRights{
             stmt.close();
             con.close();
         }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
+    public static void updateClient(LocalDate dateOfIssue, String issuedBy, String serial,
+                                    String number, int addressRegistration, int clientId, String firstName, String lastName, String patronymic,
+                                    LocalDate birthday, String login, String password, Address clientAddress,
+                                    String clientTelephone, String clientMail) throws SQLException {
+
+        Passport.insertPassport(dateOfIssue,issuedBy,serial,number,addressRegistration);
+
+        int passportId = Passport.getPassportId(dateOfIssue,issuedBy,serial,number,addressRegistration);
+        String stringBirthday = MyDate.covertLocalDateToString(birthday);
+
+
+        try {
+            Connection con = Database.getConnection();
+            Statement stmt = con.createStatement();
+
+            String rs = "UPDATE \"Users\" " +
+                    "SET \"firstName\"='"+firstName+"', \"lastName\"='"+lastName+"', patronymic='"+patronymic+"', " +
+                    "birthday='"+stringBirthday+"', " +
+                    "telephone='"+clientTelephone+"', mail='"+clientMail+"', document='"+passportId+"' " +
+                    "WHERE \"Users\".id='"+clientId+"';";
+
+
+            stmt.executeUpdate(rs);
+            stmt.close();
+            con.close();
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
 
     }

@@ -65,4 +65,19 @@ public class MainController {
 
     }
 
+    @FXML
+    public void tourButtonOnAction(ActionEvent actionEvent) throws IOException {
+        clientButton.getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("priceList.fxml"));
+
+        loader.load();
+
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setResizable(false);
+        stage.show();
+    }
 }

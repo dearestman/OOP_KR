@@ -1,6 +1,7 @@
 package com.company.new_oop.domain.pricelist;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Price {
     private int priceId;
@@ -63,4 +64,15 @@ public class Price {
     public void setTourDuration(int tourDuration) {
         this.tourDuration = tourDuration;
     }
+
+    public static ArrayList<Price> getPriceList(){
+        ArrayList<Price> priceList = new ArrayList<>();
+        
+
+
+
+
+        return priceList;
+    }
+
 }

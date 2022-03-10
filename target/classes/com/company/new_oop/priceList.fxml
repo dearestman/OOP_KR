@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.new_oop.PriceListController">
+   <children>
+      <AnchorPane layoutX="-10.0" layoutY="79.0" prefHeight="321.0" prefWidth="700.0" style="-fx-background-color: #fafafa;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="79.0">
+         <children>
+            <Label layoutX="309.0" prefHeight="51.0" prefWidth="183.0" text="Прайс-лист" textAlignment="CENTER" textFill="#8a8a8a" AnchorPane.leftAnchor="309.0" AnchorPane.rightAnchor="308.0">
+               <font>
+                  <Font name="Lobster Regular" size="35.0" />
+               </font>
+            </Label>
+            <TableView fx:id="tableViewsTours" layoutX="21.0" layoutY="85.0" prefHeight="428.0" prefWidth="758.0">
+              <columns>
+                 <TableColumn fx:id="idColumn" prefWidth="36.0" text="id">
+                    <cellValueFactory>
+                       <PropertyValueFactory property="id" />
+                    </cellValueFactory>
+                 </TableColumn>
+                <TableColumn fx:id="nameColumn" prefWidth="106.68587493896484" text="Наименование">
+                   <cellValueFactory>
+                      <PropertyValueFactory property="name" />
+                   </cellValueFactory>
+                </TableColumn>
+                  <TableColumn fx:id="countryColumn" prefWidth="83.31416320800781" text="Страна">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="country" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="HotelColumn" prefWidth="78.89590454101562" text="Отель">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="hotel" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="startDateTour" prefWidth="123.97772216796875" text="Дата начала тура">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="startDate" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="durationColumn" prefWidth="177.97772216796875" text="Продолжительность тура">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="duration" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="priceTour" prefWidth="146.92022705078125" text="Цена тура">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="price" />
+                     </cellValueFactory>
+                  </TableColumn>
+
+              </columns>
+            </TableView>
+            <Button fx:id="addClientButton" layoutX="21.0" layoutY="51.0" mnemonicParsing="false" onAction="#addClientButtonOnAction" text="+">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="deleteTourButton" layoutX="60.0" layoutY="51.0" mnemonicParsing="false" onAction="#deleteTourButtonOnAction" prefHeight="29.0" prefWidth="29.0" text="-">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="mainMenuButton" layoutX="241.0" layoutY="51.0" mnemonicParsing="false" onAction="#mainMenuButtonOnAction" text="Главное меню">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="updateTourButton" layoutX="98.0" layoutY="51.0" mnemonicParsing="false" onAction="#updateTourButtonOnAction" prefHeight="29.0" prefWidth="126.0" text="редактировать">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
+      <Label layoutX="289.0" layoutY="15.0" prefHeight="58.0" prefWidth="221.0" text="Турагенство" textAlignment="CENTER" textFill="#fafafa" AnchorPane.leftAnchor="289.0" AnchorPane.rightAnchor="290.0" AnchorPane.topAnchor="15.0">
+         <font>
+            <Font name="Lobster Regular" size="40.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

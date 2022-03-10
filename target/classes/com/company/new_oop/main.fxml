@@ -24,7 +24,7 @@
                   <Font name="Lobster Regular" size="28.0" />
                </font>
             </Button>
-            <Button fx:id="tourButton" layoutX="483.0" layoutY="151.0" mnemonicParsing="false" onAction="#onActionClients" style="-fx-background-color: #2E3348 #2E3348;" text="Туры" textFill="#fafafa" AnchorPane.rightAnchor="121.0">
+            <Button fx:id="tourButton" layoutX="483.0" layoutY="151.0" mnemonicParsing="false" onAction="#tourButtonOnAction" style="-fx-background-color: #2E3348 #2E3348;" text="Туры" textFill="#fafafa" AnchorPane.rightAnchor="121.0">
                <font>
                   <Font name="Lobster Regular" size="28.0" />
                </font>

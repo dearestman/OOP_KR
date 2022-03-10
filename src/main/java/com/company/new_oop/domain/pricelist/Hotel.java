@@ -2,7 +2,13 @@
 
 package com.company.new_oop.domain.pricelist;
 
+import com.company.new_oop.Database;
 import com.company.new_oop.domain.address.Address;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 /**
  * Этот класс описывает структуру Отеля
  * @author Stupakov Dmitriy
@@ -70,4 +76,24 @@ public class Hotel {
     public void setHotelAddress(Address hotelAddress) {
         this.hotelAddress = hotelAddress;
     }
+
+    public static void insertHotel(String hotelName, int addressId) throws SQLException {
+
+        try {
+            Connection con = Database.getConnection();
+            Statement stmt = con.createStatement();
+            String rs = "INSERT INTO \"Hotels\" (name, addres) " +
+                    "VALUES ('"+hotelName+"', '"+addressId+"')";
+
+            stmt.executeUpdate(rs);
+            stmt.close();
+            con.close();
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
+
 }

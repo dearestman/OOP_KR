@@ -1,11 +1,13 @@
 package com.company.new_oop.domain.address;
 
 import com.company.new_oop.Database;
+import com.company.new_oop.domain.MyDate;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Locality {
@@ -116,4 +118,57 @@ public class Locality {
             throwables.printStackTrace();
         }
     }
+
+    public static int getLocalityId(String country, String region, String inhabited){
+        int localityId=-1;
+
+        try {
+            Connection con = Database.getConnection();
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * " +
+                        "FROM \"Localities\" " +
+                        "WHERE \"country\"='"+country+"' " +
+                        "AND \"region\"='"+region+"' " +
+                        "AND \"inhabited\"='"+inhabited+"' ");
+
+                while (rs.next()) {
+
+                    localityId = rs.getInt("id");
+
+                }
+                rs.close();
+                stmt.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return localityId;
+    }
+
+
+
+    public static void updateLocality(int localityId, String country, String region, String inhabitedLocality) throws SQLException {
+
+        try {
+            Connection con = Database.getConnection();
+            Statement stmt = con.createStatement();
+
+            String rs = "" +
+                    "UPDATE \"Localities\" " +
+                    "SET country='"+country+"', region='"+region+"', inhabited='"+inhabitedLocality+"' " +
+                    "WHERE id="+localityId+";";
+            stmt.executeUpdate(rs);
+            stmt.close();
+            con.close();
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
 }

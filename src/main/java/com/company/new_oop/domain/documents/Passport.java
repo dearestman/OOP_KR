@@ -103,6 +103,31 @@ public class Passport extends Document{
             return passportId;
     }
 
+    public static void updatePassport(int passportId, LocalDate dateOfIssue, String issuedBy, String serial,
+                                      String number, int addressRegistration) throws SQLException {
+
+        String formattedString = MyDate.covertLocalDateToString(dateOfIssue);
+        try {
+            Connection con = Database.getConnection();
+            Statement stmt = con.createStatement();
+
+            String rs = "" +
+                    "UPDATE \"Documents\" " +
+                    "SET \"dateOfIssue\"='"+MyDate.covertLocalDateToString(dateOfIssue)+"', " +
+                    "\"issuedBy\"='"+issuedBy+"', serial='"+serial+"', \"number\"='"+number+"', " +
+                    "\"addressRegistration\"='"+addressRegistration+"'" +
+                    "WHERE id="+passportId+";";
+
+            stmt.executeUpdate(rs);
+            stmt.close();
+            con.close();
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
 
 //    SQL
 }

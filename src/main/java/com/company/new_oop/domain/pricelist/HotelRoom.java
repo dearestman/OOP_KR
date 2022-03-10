@@ -1,5 +1,11 @@
 package com.company.new_oop.domain.pricelist;
 
+import com.company.new_oop.Database;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class HotelRoom {
     private int hotelRoomId;
     private String hotelRoomNumber;
@@ -54,4 +60,24 @@ public class HotelRoom {
     public void setHotelRoomTypeOfFood(String hotelRoomTypeOfFood) {
         this.hotelRoomTypeOfFood = hotelRoomTypeOfFood;
     }
+
+
+    public static void insertHotelRoom(String hotelRoomNumber, int hotelRoomStars, int hotelId, String hotelRoomTypeOfFood) throws SQLException {
+
+        try {
+            Connection con = Database.getConnection();
+            Statement stmt = con.createStatement();
+            String rs = "INSERT INTO \"HotelRooms\" (number, stars, hotel, typeOfFood) " +
+                    "VALUES ('"+hotelRoomNumber+"', '"+hotelRoomStars+"', '"+ hotelId +"', '"+hotelRoomTypeOfFood+"')";
+
+            stmt.executeUpdate(rs);
+            stmt.close();
+            con.close();
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
 }

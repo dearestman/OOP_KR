@@ -86,14 +86,14 @@ public class Address {
 
     public static void insertAddress(String addressStreet, String addressHouse,
                                      String addressExtension, String addressApartment,
-                                     Locality addressLocality) throws SQLException {
+                                     int localityId) throws SQLException {
 
         try {
             Connection con = Database.getConnection();
             Statement stmt = con.createStatement();
             String rs = "INSERT INTO \"Addresses\" (street, house, extension, apartment, locality) " +
                     "VALUES ('"+addressStreet+"', '"+addressHouse+"', '"+addressExtension+"', " +
-                    "'"+addressApartment+"', '"+addressLocality.getLocalityId()+"')";
+                    "'"+addressApartment+"', '"+localityId+"')";
 
             stmt.executeUpdate(rs);
             stmt.close();
@@ -160,6 +160,62 @@ public class Address {
             throwables.printStackTrace();
         }
     }
+
+    public static int getAddressId(String street, String house, String extension, String apartment, int localityId){
+        int addressId=-1;
+
+        try {
+            Connection con = Database.getConnection();
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * " +
+                        "FROM \"Addresses\" " +
+                        "WHERE \"street\"='"+street+"' " +
+                        "AND \"house\"='"+house+"' " +
+                        "AND \"extension\"='"+extension+"' " +
+                        "AND \"apartment\"='"+apartment+"' " +
+                        "AND \"locality\"='"+localityId+"' ");
+
+                while (rs.next()) {
+
+                    addressId = rs.getInt("id");
+
+                }
+                rs.close();
+                stmt.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return addressId;
+    }
+
+    public static void updateAddress(int addressId, String addressStreet, String addressHouse,
+                                     String addressExtension, String addressApartment,
+                                     int localityId) throws SQLException {
+
+        try {
+            Connection con = Database.getConnection();
+            Statement stmt = con.createStatement();
+
+            String rs = "" +
+                    "UPDATE public.\"Addresses\" " +
+                    "SET street='"+addressStreet+"', house='"+addressHouse+"', extension='"+addressExtension+"', " +
+                    "apartment='"+addressApartment+"', locality="+localityId+" " +
+                    "WHERE id="+addressId+";";
+            stmt.executeUpdate(rs);
+            stmt.close();
+            con.close();
+        }
+        catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+    }
+
 
     //SQL
 }
