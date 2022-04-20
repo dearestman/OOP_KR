@@ -3,6 +3,7 @@ package com.company.new_oop.domain.pricelist;
 import com.company.new_oop.Database;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -79,5 +80,38 @@ public class HotelRoom {
         }
 
     }
+
+    //Получаем hotelRoomId
+    public static int getHotelId(String hotelRoomNumber, int hotelRoomStars, String hotelRoomTypeOfFood, int hotelId){
+        int hotelRoomId=-1;
+
+        try {
+            Connection con = Database.getConnection();
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * " +
+                        "FROM \"HotelRooms\" " +
+                        "WHERE \"hotelRoomNumber\"='"+hotelRoomNumber+"' " +
+                        "AND \"hotelRoomStars\"='"+hotelRoomStars+"' " +
+                        "AND \"hotelRoomTypeOfFood\"='"+hotelRoomTypeOfFood+"' " +
+                        "AND \"hotelId\"='"+hotelId+"' ");
+
+                while (rs.next()) {
+
+                    hotelRoomId = rs.getInt("id");
+
+                }
+                rs.close();
+                stmt.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return hotelRoomId;
+    }
+
 
 }

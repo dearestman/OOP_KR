@@ -6,6 +6,7 @@ import com.company.new_oop.Database;
 import com.company.new_oop.domain.address.Address;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -94,6 +95,38 @@ public class Hotel {
         }
 
     }
+
+
+    //Получаем hotelId
+    public static int getHotelId(String hotelName, int addressId){
+        int hotelId=-1;
+
+        try {
+            Connection con = Database.getConnection();
+            try {
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT * " +
+                        "FROM \"Hotels\" " +
+                        "WHERE \"hotelName\"='"+hotelName+"' " +
+                        "AND \"address\"='"+addressId+"' ");
+
+                while (rs.next()) {
+
+                    hotelId = rs.getInt("id");
+
+                }
+                rs.close();
+                stmt.close();
+            } finally {
+                con.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return hotelId;
+    }
+
 
 
 }

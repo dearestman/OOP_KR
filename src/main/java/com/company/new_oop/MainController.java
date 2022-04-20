@@ -18,9 +18,6 @@ public class MainController {
 
     private static User authorizedUser;
 
-    public static User getAuthorizedUser() {
-        return authorizedUser;
-    }
 
     public static void setAuthorizedUser(User authorizedUser) {
         MainController.authorizedUser = authorizedUser;

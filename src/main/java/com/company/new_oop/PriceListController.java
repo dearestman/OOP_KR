@@ -1,5 +1,7 @@
 package com.company.new_oop;
 
+import com.company.new_oop.domain.MyDate;
+import com.company.new_oop.domain.pricelist.Price;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class PriceListController implements Initializable {
@@ -74,8 +77,19 @@ public class PriceListController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         ObservableList<PropertyTour> list = FXCollections.observableArrayList(
         );
-        list.add(new PropertyTour(1,"dasda","dsadas","Dasdas","dasdas", 1, "dsadas"));
-//        ArrayList<Adult> temp = Adult.selectAllAdults();
+        ArrayList<Price> priceArrayList = Price.selectPriceList();
+        for (Price elem:priceArrayList
+             ) {
+
+            PropertyTour propertyTour = new PropertyTour(elem.getPriceId(),
+                    elem.getPriceTour().getTourName(),
+                    elem.getPriceTour().getHotelRoom().getHotelRoomHotel().getHotelAddress().getAddressLocality().getCountry(),
+                    elem.getPriceTour().getHotelRoom().getHotelRoomHotel().getHotelName(),
+                    MyDate.covertLocalDateToString(elem.getPriceTourDate()),
+                    elem.getTourDuration(), Integer.toString((int) elem.getPriceTourPrice()));
+            list.add(propertyTour);
+        }
+
 
 
         tableViewsTours.setItems(list);
