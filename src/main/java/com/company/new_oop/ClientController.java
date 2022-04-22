@@ -89,7 +89,6 @@ public class ClientController implements Initializable {
     void deleteClientButtonOnAction(ActionEvent event) throws SQLException, IOException {
         selectedClient = Adult.getAdult(tableViewsClients.getSelectionModel().getSelectedItem().getId());
         Adult.markForDeletionAdult(selectedClient);
-
         ObservableList<TestUser> list = FXCollections.observableArrayList();
         ArrayList<Adult> temp = Adult.selectAllAdults();
         for (Adult adult:temp
@@ -98,10 +97,7 @@ public class ClientController implements Initializable {
                     adult.getPatronymic(), MyDate.covertLocalDateToString(adult.getBirthday()), "Паспорт",
                     adult.getClientPassport().getPassportSerial(), adult.getClientPassport().getPassportNumber()));
         }
-
-
         tableViewsClients.setItems(list);
-
     }
 
 
@@ -116,20 +112,15 @@ public class ClientController implements Initializable {
                     adult.getPatronymic(), MyDate.covertLocalDateToString(adult.getBirthday()), "Паспорт",
                     adult.getClientPassport().getPassportSerial(), adult.getClientPassport().getPassportNumber()));
         }
-
-
         tableViewsClients.setItems(list);
     }
 
     @FXML
     public void mainMenuButtonOnAction(ActionEvent actionEvent) throws IOException {
         mainMenuButton.getScene().getWindow().hide();
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("main.fxml"));
-
         loader.load();
-
         Parent root = loader.getRoot();
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
@@ -140,16 +131,11 @@ public class ClientController implements Initializable {
     @FXML
     public void updateClientButtonOnAction(ActionEvent actionEvent) throws IOException {
         selectedClient = Adult.getAdult(tableViewsClients.getSelectionModel().getSelectedItem().getId());
-
-
         if (selectedClient!=null) {
             mainMenuButton.getScene().getWindow().hide();
-
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("clientInfo.fxml"));
-
             loader.load();
-
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
