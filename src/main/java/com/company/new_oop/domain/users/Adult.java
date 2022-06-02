@@ -168,7 +168,7 @@ public class Adult extends Client{
 
                     adult = new Adult(clientId,firstName,lastName, patronymic,
                             localBirthday, login, password, telephone, mail, passport);
-                    int typeOfUser = 3;
+                    int typeOfUser = 4;
 
 
 

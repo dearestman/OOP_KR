@@ -42,26 +42,18 @@ public class AuthorizationController {
             Shake userPasswordAnimation = new Shake(passwordField);
             userLoginAnimation.playAnim();
             userPasswordAnimation.playAnim();
-
         } else {
-
             singUpButton.getScene().getWindow().hide();
             MainController.setAuthorizedUser(user);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("main.fxml"));
-
             loader.load();
-
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.show();
-
-
         }
-
-
     }
 
 

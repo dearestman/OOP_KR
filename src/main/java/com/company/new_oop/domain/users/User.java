@@ -38,7 +38,7 @@ public class User implements UserRights {
     }
 
     public int getTypeOfUser() {
-        return typeOfUser;
+        return 4;
     }
 
     public void setTypeOfUser(int typeOfUser) {
